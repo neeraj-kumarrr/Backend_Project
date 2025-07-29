@@ -11,7 +11,6 @@ const uploadDir = path.join(__dirname , "../../public")
 const storage = multer.diskStorage({
     destination : function (req, file , cb){
         cb(null , uploadDir)
-
     },
     
     filename : function (req , file , cb){

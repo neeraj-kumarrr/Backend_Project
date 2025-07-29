@@ -395,21 +395,11 @@ export const deleteUser = asyncHandler( async (req , res)=>{
 
 const {username} = req.params;
 
-// // console.log(username , "HDEHHEDH");
+// console.log(username , "HDEHHEDH");
 
 const deletedUser = User.findOneAndDelete({username}) 
 
-// console.log("DELELLE" , deletedUser);
-
-// const deleteduser = User.findOneAndUpdate(username , {
-//     $set:{
-//         isActive: false
-//     }
-
-// })
-
-
-
+console.log("DELELLE" , deletedUser);
 
  return res.status(201).json(new ApiResponse(200 , "user delete successfully" ,{} ))
 })
