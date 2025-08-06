@@ -9,6 +9,7 @@
 
     import userRouter from "./routes/user.route.js"
     import videoRouter from "./routes/video.route.js"
+    import tweetRouter from "./routes/tweet.route.js"
 
     import path from "path"
     import { fileURLToPath } from "url";
@@ -28,8 +29,9 @@
 
     app.use(cookieParser())
 
-    app.use("/api/v1" , userRouter)
+    app.use("/api/v1/" , [userRouter , tweetRouter])
     app.use("/api/v1/video" , videoRouter)
+    // app.use("/api/v1/" , tweetRouter )
     // app.use("/api/v1" , registerRouter)
     
 

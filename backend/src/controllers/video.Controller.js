@@ -318,11 +318,8 @@ export const togglePublishStatus = asyncHandler(async (req ,res)=>{
     }
 
 
-    
-
     // videoid by params 
     // updte status of toggle by true or false 
-
 
     console.log("req id" , videoId)   ;
     
