@@ -48,9 +48,15 @@ export const protect = asyncHandler(async(req , res , next)=>{
     //get req.user
     try {
         const token =  req.cookies?.accessToken || req.headers("Authorization")?.replace("Bearer " , "")
-        // console.log("c  vc ........" , token);
+        console.log("c  vc ........" , token);
+
+        // const envVariable = process.env.ACCESS_TOKEN_SECRET
+        // console.log(envVariable , "enviromnmenr varibaler");
+        
     
         const decodedToken = jwt.verify(token , process.env.ACCESS_TOKEN_SECRET)
+        console.log("nitttt");
+        
         console.log("encvvvv" , process.env.ACCESS_TOKEN_SECRET);
         
         console.log("fc  vfv v........." , decodedToken._id);
@@ -68,8 +74,7 @@ export const protect = asyncHandler(async(req , res , next)=>{
         next()
     } catch (error) {
         throw new ApiError(400 , "invalid access token");
-        
-        
+            
     }
     
 

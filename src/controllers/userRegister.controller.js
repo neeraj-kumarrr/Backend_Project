@@ -205,6 +205,8 @@ export const getRefreshToken = asyncHandler(async (req , res)=>{
 const incomingRefreshToken =  req.cookies?.refreshToken || req.get("Authorization").replace("Bearer " , "")
 
 console.log("refresh ttt..." , incomingRefreshToken);
+// console.log("checking refresh signature" , process.env.REFRESH_TOKEN_SECRET);
+
 
 
 const decodedToken = jwt.verify(incomingRefreshToken , process.env.REFRESH_TOKEN_SECRET);
