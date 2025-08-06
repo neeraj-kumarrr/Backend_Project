@@ -205,6 +205,8 @@ export const getRefreshToken = asyncHandler(async (req , res)=>{
 const incomingRefreshToken =  req.cookies?.refreshToken || req.get("Authorization").replace("Bearer " , "")
 
 console.log("refresh ttt..." , incomingRefreshToken);
+// console.log("checking refresh signature" , process.env.REFRESH_TOKEN_SECRET);
+
 
 
 const decodedToken = jwt.verify(incomingRefreshToken , process.env.REFRESH_TOKEN_SECRET);
@@ -395,11 +397,21 @@ export const deleteUser = asyncHandler( async (req , res)=>{
 
 const {username} = req.params;
 
-// console.log(username , "HDEHHEDH");
+// // console.log(username , "HDEHHEDH");
 
 const deletedUser = User.findOneAndDelete({username}) 
 
-console.log("DELELLE" , deletedUser);
+// console.log("DELELLE" , deletedUser);
+
+// const deleteduser = User.findOneAndUpdate(username , {
+//     $set:{
+//         isActive: false
+//     }
+
+// })
+
+
+
 
  return res.status(201).json(new ApiResponse(200 , "user delete successfully" ,{} ))
 })
