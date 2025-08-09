@@ -97,7 +97,7 @@ export const createPlaylist = asyncHandler(async (req , res)=>{
 
     }
 
-    
+
     const newPlaylist = await Playlist.create({
         name : name,
         description: description,
@@ -106,6 +106,31 @@ export const createPlaylist = asyncHandler(async (req , res)=>{
     })
 
     return res.status(201).json( new ApiResponse( 201 , "playlist created successfully" , {newPlaylist}))
+
+})
+
+
+export const getUserPlaylist = asyncHandler (async (req , res) =>{
+
+    const {userId} = req.params;
+
+    const getPlaylist = await Playlist.find({owner : userId}).populate("videos" , "video")
+
+    console.log("playlist" , getPlaylist);
+    
+
+    return res.status(200).json(new ApiResponse(200 , "playlist fetched successfully" , {getPlaylist}))
+
+
+}) 
+
+export const getPlaylistById = asyncHandler (async (req ,res)=>{
+
+    const {playlistId} = req.params;
+
+    const specificPlaylist = await Playlist.findById(playlistId).populate("videos" , "video")
+
+    return res.status(200).json({specificPlaylist})
 
 })
 
