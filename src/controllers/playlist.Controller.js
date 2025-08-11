@@ -134,4 +134,80 @@ export const getPlaylistById = asyncHandler (async (req ,res)=>{
 
 })
 
+export const addVideoToPlayList = asyncHandler (async ( req , res)=>{
+    const {playlistId , videoId} = req.params
+
+    if (!playlistId || !videoId){
+        throw new ApiError(404 , " videoId and playlistId not found")
+    }
+
+    const addeddPlaylist = await Playlist.findByIdAndUpdate(playlistId , {
+        $push : {
+            videos : videoId 
+        }
+    } ,{$position : 0} , {new : true})
+
+    return res.status(200)
+    .json( new ApiResponse(200 , "video addedd to specific playlist ", {addeddPlaylist}))
+    // console.log("playlsit " , findPlaylist);
+    
+    
+})
+
+export const removeVideoFromPlayist = asyncHandler( async (req , res)=>{
+
+    const {playlistId , videoId} = req.params;
+
+    const removedVideos = await Playlist.findByIdAndUpdate( playlistId , {
+        $pull : {
+            videos : videoId
+        }
+    } , {new : true})
+
+    console.log("removed video" , removedVideos);
+
+    return res.status(201)
+    .json( new ApiResponse ( 201 , "video removed successfully" , {removedVideos}))
+
+})
+
+export const deletePlaylist = asyncHandler (async (req ,res)=>{
+    const {playlistId} = req.params
+
+    const removedPlaylist = await Playlist.findByIdAndDelete(playlistId)
+
+    return res.status(204).json( new ApiResponse( 204 , "playlist deleted successfully" , {}))
+    
+
+})
+
+
+export const updatePlaylist = asyncHandler(async (req ,res)=>{
+
+    console.log("hit update playlist");
+    
+
+    // const {playlistId} = req.params;
+    // const playlistId = req.params.playlistId;
+    const {playlistId} = req.params
+
+    console.log("playlistid" , playlistId);
+    
+
+    const {name , description} =req.body;
+
+    const updatedPlaylist = await Playlist.findByIdAndUpdate(playlistId ,{
+
+        $set:{
+            name: name,
+            description: description
+        }
+    } , {new : true})
+
+    return res.status(200).json( new ApiResponse(200 , "playlist update successfully" , {updatedPlaylist}))
+
+})
+
+
+
 
