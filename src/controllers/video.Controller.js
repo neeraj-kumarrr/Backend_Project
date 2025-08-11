@@ -22,10 +22,10 @@ export const getAllVideos = asyncHandler(async (req , res)=>{
         const { query, sortBy, sortType, userId ,page , limit } = req.query;
 
         // if(! query || !sortBy || !sort)
-        console.log("queries" , query);
-        console.log("queries" , sortBy);
-        console.log("queries" , sortType);
-        console.log("queries" , userId);
+        // console.log("queries" , query);
+        // console.log("queries" , sortBy);
+        // console.log("queries" , sortType);
+        // console.log("queries" , userId);
         // console.log("queries" , query);
 
         

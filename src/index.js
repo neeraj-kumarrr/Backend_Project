@@ -12,6 +12,7 @@
     import tweetRouter from "./routes/tweet.route.js"
     import subscriptionRouter from "./routes/subscription.route.js"
     import playlistRouter from "./routes/playlist.route.js"
+    import commentRouter from "./routes/comment.route.js"
 
     import path from "path"
     import { fileURLToPath } from "url";
@@ -31,7 +32,13 @@
 
     app.use(cookieParser())
 
-    app.use("/api/v1/" , [userRouter , tweetRouter , subscriptionRouter , playlistRouter ])
+    app.use("/api/v1/" , [
+        userRouter ,
+        tweetRouter ,
+        subscriptionRouter ,
+        playlistRouter ,
+        commentRouter  
+    ])
     app.use("/api/v1/video" , videoRouter)
     // app.use("/api/v1/" , tweetRouter )
     // app.use("/api/v1" , registerRouter)
