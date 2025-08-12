@@ -61,17 +61,6 @@ export const getVideoComment = asyncHandler(async (req ,res)=>{
             video :  new mongoose.Types.ObjectId(videoId)
         }} ,
         {
-            $lookup : {
-                from:"users",
-                localField:"owner",
-                foreignField:"_id",
-                as:"user"
-            }
-        },
-        {
-            $unwind : "$user"
-        } ,
-        {
             $sort : { createdAt : -1}
         }
     ]
@@ -91,7 +80,7 @@ export const getVideoComment = asyncHandler(async (req ,res)=>{
 
     // const allComments = await Comment.find()
     const result = await Comment.aggregatePaginate(Comment.aggregate(pipeline) , options)
-
+    
     console.log("result " ,result );
     
 
@@ -132,3 +121,4 @@ export const deleteComment = asyncHandler(async (req ,res)=>{
     return res.status(204).json( new ApiResponse(204 , "comment deleted successfully" , {}))
 
 })
+

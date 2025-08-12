@@ -13,6 +13,7 @@
     import subscriptionRouter from "./routes/subscription.route.js"
     import playlistRouter from "./routes/playlist.route.js"
     import commentRouter from "./routes/comment.route.js"
+    import likeRouter from "./routes/like.route.js"
 
     import path from "path"
     import { fileURLToPath } from "url";
@@ -37,7 +38,9 @@
         tweetRouter ,
         subscriptionRouter ,
         playlistRouter ,
-        commentRouter  
+        commentRouter ,
+        likeRouter
+
     ])
     app.use("/api/v1/video" , videoRouter)
     // app.use("/api/v1/" , tweetRouter )
